@@ -19,14 +19,18 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 async function getJson() {
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
 
-  const data = res.json({
-
-	  let output = '';
-	  data.map((user) => {
-		output += `<li>${user.id}</li>`;
-	  });
-	  document.body.innerHTML = output;
-  });
-
+  const data = res.json();
+  return data;
 }
-getJson().then((data) => console.log(data));
+getJson().then((users) => {
+  let output = '';
+  users.forEach((user) => {
+    output += `
+	<div>${user.id}</div>
+	<li>${user.name}</li>
+	<li>${user.username}</li>
+
+	`;
+  });
+  document.body.innerHTML = output;
+});
