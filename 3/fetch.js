@@ -20,6 +20,7 @@ async function getJson() {
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
 
   const data = res.json();
+
   return data;
 }
 getJson().then((users) => {
@@ -34,3 +35,11 @@ getJson().then((users) => {
   });
   document.body.innerHTML = output;
 });
+
+async function getText() {
+  const text = await fetch('simple.txt');
+  const re = text.text();
+  return re;
+}
+
+getText().then((data) => console.log(data));
